@@ -16,16 +16,26 @@ const btnHold = document.querySelector('.btn--hold');
 const player0Elm = document.querySelector('.player--0');
 const player1Elm = document.querySelector('.player--1');
 
-const finalScores = [0, 0];
-let currentScore = 0;
-let activePlayer = 0;
-let isPlaying = true;
+let finalScores, currentScore, activePlayer, isPlaying;
 
 const initGameState = () => {
+  finalScores = [0, 0];
+  currentScore = 0;
+  activePlayer = 0;
+  isPlaying = true;
+
   score0Elm.textContent = 0;
   score1Elm.textContent = 0;
+  current0Elm.textContent = 0;
+  current1Elm.textContent = 0;
 
   diceElm.classList.add('hidden');
+
+  player0Elm.classList.remove('player--winner');
+  player1Elm.classList.remove('player--winner');
+
+  player0Elm.classList.add('player--active');
+  player1Elm.classList.remove('player--active');
 };
 
 const switchPlayer = () => {
@@ -80,3 +90,4 @@ const handleBtnHold = () => {
 initGameState();
 btnRoll.addEventListener('click', handleBtnRoll);
 btnHold.addEventListener('click', handleBtnHold);
+btnNew.addEventListener('click', initGameState);
